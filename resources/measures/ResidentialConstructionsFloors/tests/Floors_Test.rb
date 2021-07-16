@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../../test/minitest_helper'
 require 'openstudio'
 require 'openstudio/ruleset/ShowRunnerOutput'
@@ -196,6 +198,7 @@ class ProcessConstructionsFloorsTest < MiniTest::Test
         new_object = new_object.public_send("to_#{obj_type}").get
         next unless obj_type == 'Construction'
         next unless new_object.name.to_s.start_with?(Constants.SurfaceTypeFloorFinInsUnfin) && (not new_object.name.to_s.include? 'Reversed')
+
         new_object.to_LayeredConstruction.get.layers.each do |layer|
           mat = layer.to_StandardOpaqueMaterial.get
           actual_values['CeilingRValue'] += mat.thickness / mat.conductivity

@@ -1,4 +1,6 @@
-#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# !/usr/bin/env ruby
 # CLI tool to allow for recreate the localResults directory
 # This provides a critical workaround for BuildStock PAT projects
 # Written by Henry R Horsey III (henry.horsey@nrel.gov)
@@ -73,6 +75,7 @@ def retrieve_dp_data(local_results_dir, server_api, interval = 5, analysis_id = 
 
     # Report out progress
     next unless count.to_f * 100 / dps.length >= report_at
+
     puts "INFO: Completed #{report_at}%; #{(Time.now - timestep).round}s"
     report_at += interval
     timestep = Time.now

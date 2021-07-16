@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'openstudio'
 require 'openstudio/ruleset/ShowRunnerOutput'
 require_relative 'minitest_helper'
@@ -37,8 +39,9 @@ class TestResStockMeasuresOSW < MiniTest::Test
         end
 
         building_ids = []
+        buildstock_csv_data = CSV.open(File.join(lib_dir, 'housing_characteristics/buildstock.csv'), headers: true).map(&:to_hash)
         (1..num_samples).to_a.each do |building_id|
-          bldg_data = get_data_for_sample(File.join(lib_dir, 'housing_characteristics/buildstock.csv'), building_id, runner)
+          bldg_data = get_data_for_sample(buildstock_csv_data, building_id, runner)
           next unless counties.include? bldg_data['County']
 
           building_ids << building_id

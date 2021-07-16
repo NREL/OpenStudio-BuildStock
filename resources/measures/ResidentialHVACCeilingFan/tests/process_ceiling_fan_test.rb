@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../../test/minitest_helper'
 require 'openstudio'
 require 'openstudio/ruleset/ShowRunnerOutput'
@@ -214,6 +216,7 @@ class ProcessCeilingFanTest < MiniTest::Test
 
         new_object = new_object.public_send("to_#{obj_type}").get
         next unless obj_type == 'ElectricEquipment'
+
         if new_object.name.to_s.start_with? Constants.ObjectNameCeilingFan + ' non benchmark'
           assert_in_epsilon(expected_values['ceiling_fans_design_level'], new_object.designLevel.get, 0.01)
         end

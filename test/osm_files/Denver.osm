@@ -1,41 +1,49 @@
 !- NOTE: Auto-generated from /test/osw_files/Denver.osw
 
 OS:Version,
-  {0c5f66c0-db61-44d8-957b-692033f097f0}, !- Handle
-  2.9.0;                                  !- Version Identifier
+  {c378e49a-fa3b-4a62-8254-078ff6a82c04}, !- Handle
+  3.2.1;                                  !- Version Identifier
 
 OS:SimulationControl,
-  {a20c28c3-dbd3-4d6d-8bab-c0a857986cd5}, !- Handle
+  {603c93ed-6c0e-4933-b2cf-acc910254850}, !- Handle
   ,                                       !- Do Zone Sizing Calculation
   ,                                       !- Do System Sizing Calculation
   ,                                       !- Do Plant Sizing Calculation
   No;                                     !- Run Simulation for Sizing Periods
 
 OS:Timestep,
-  {54f707a1-d6c5-4b95-8c52-175b3c810d2a}, !- Handle
+  {12acf7eb-6270-4877-b55c-fc8b820259c5}, !- Handle
   6;                                      !- Number of Timesteps per Hour
 
 OS:ShadowCalculation,
-  {a4b204e4-f2b9-4e46-8fa4-fda9527131e2}, !- Handle
-  20,                                     !- Calculation Frequency
-  200;                                    !- Maximum Figures in Shadow Overlap Calculations
+  {28023db5-50e4-4f1b-b2ce-cc18900d7d90}, !- Handle
+  PolygonClipping,                        !- Shading Calculation Method
+  ,                                       !- Shading Calculation Update Frequency Method
+  20,                                     !- Shading Calculation Update Frequency
+  200,                                    !- Maximum Figures in Shadow Overlap Calculations
+  ,                                       !- Polygon Clipping Algorithm
+  512,                                    !- Pixel Counting Resolution
+  ,                                       !- Sky Diffuse Modeling Algorithm
+  No,                                     !- Output External Shading Calculation Results
+  No,                                     !- Disable Self-Shading Within Shading Zone Groups
+  No;                                     !- Disable Self-Shading From Shading Zone Groups to Other Zones
 
 OS:SurfaceConvectionAlgorithm:Outside,
-  {ead2ee77-4b53-4f2c-a776-7b772d1c1d82}, !- Handle
+  {0def79ea-5a19-48f8-9c79-09d9b63a61c4}, !- Handle
   DOE-2;                                  !- Algorithm
 
 OS:SurfaceConvectionAlgorithm:Inside,
-  {207fcbf1-faf2-446c-b179-4c828642d391}, !- Handle
+  {0e8b0468-9693-47f3-9b1f-f3111943033f}, !- Handle
   TARP;                                   !- Algorithm
 
 OS:ZoneCapacitanceMultiplier:ResearchSpecial,
-  {2586b705-5e89-47aa-b728-99079d6b9ed4}, !- Handle
+  {9a2f0d62-f7ba-46d7-a843-c8a98e8abf89}, !- Handle
   ,                                       !- Temperature Capacity Multiplier
   15,                                     !- Humidity Capacity Multiplier
   ;                                       !- Carbon Dioxide Capacity Multiplier
 
 OS:RunPeriod,
-  {9449b8b0-7b88-466c-aba7-54b880813fb7}, !- Handle
+  {5f25f7e7-a162-4c42-b368-bd53e17debca}, !- Handle
   Run Period 1,                           !- Name
   1,                                      !- Begin Month
   1,                                      !- Begin Day of Month
@@ -49,13 +57,13 @@ OS:RunPeriod,
   ;                                       !- Number of Times Runperiod to be Repeated
 
 OS:YearDescription,
-  {a748ec4a-2ecf-4068-9329-a5a1e5f3a4ea}, !- Handle
+  {e28d530d-ec50-4b60-8626-3b3dbe5b22f0}, !- Handle
   2007,                                   !- Calendar Year
   ,                                       !- Day of Week for Start Day
   ;                                       !- Is Leap Year
 
 OS:WeatherFile,
-  {a05d1ead-b02c-41d0-96b0-3a416a426793}, !- Handle
+  {9bac237f-0e86-433f-8958-7f77590a087c}, !- Handle
   Denver Intl Ap,                         !- City
   CO,                                     !- State Province Region
   USA,                                    !- Country
@@ -65,12 +73,12 @@ OS:WeatherFile,
   -104.65,                                !- Longitude {deg}
   -7,                                     !- Time Zone {hr}
   1650,                                   !- Elevation {m}
-  file:../weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw, !- Url
+  /mnt/c/git/resstock/resources/measures/HPXMLtoOpenStudio/weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw, !- Url
   E23378AA;                               !- Checksum
 
 OS:AdditionalProperties,
-  {b737847f-6f1c-4f8f-bdc3-663db343ced3}, !- Handle
-  {a05d1ead-b02c-41d0-96b0-3a416a426793}, !- Object Name
+  {9bad20c6-1a5c-4189-874b-d364557f1942}, !- Handle
+  {9bac237f-0e86-433f-8958-7f77590a087c}, !- Object Name
   EPWHeaderCity,                          !- Feature Name 1
   String,                                 !- Feature Data Type 1
   Denver Intl Ap,                         !- Feature Value 1
@@ -178,7 +186,7 @@ OS:AdditionalProperties,
   84;                                     !- Feature Value 35
 
 OS:Site,
-  {be593008-2100-4c15-9e4d-5599b736992b}, !- Handle
+  {a5906b0a-dca2-417b-9b8d-e50e4068a917}, !- Handle
   Denver Intl Ap_CO_USA,                  !- Name
   39.83,                                  !- Latitude {deg}
   -104.65,                                !- Longitude {deg}
@@ -187,32 +195,26 @@ OS:Site,
   ;                                       !- Terrain
 
 OS:ClimateZones,
-  {17cdaa19-9122-400f-a7ad-fb83d6910752}, !- Handle
-  ,                                       !- Active Institution
-  ,                                       !- Active Year
-  ,                                       !- Climate Zone Institution Name 1
+  {c843ae94-ea43-45b2-9a85-12d9061db916}, !- Handle
+  Building America,                       !- Climate Zone Institution Name 1
   ,                                       !- Climate Zone Document Name 1
-  ,                                       !- Climate Zone Document Year 1
-  ,                                       !- Climate Zone Value 1
-  Building America,                       !- Climate Zone Institution Name 2
-  ,                                       !- Climate Zone Document Name 2
-  0,                                      !- Climate Zone Document Year 2
-  Cold;                                   !- Climate Zone Value 2
+  0,                                      !- Climate Zone Document Year 1
+  Cold;                                   !- Climate Zone Value 1
 
 OS:Site:WaterMainsTemperature,
-  {31638b17-079e-4bcb-aedd-b3b8a4279145}, !- Handle
+  {9502be0b-6b4d-42d2-a8fd-e25b5cc9ff31}, !- Handle
   Correlation,                            !- Calculation Method
   ,                                       !- Temperature Schedule Name
   10.8753424657535,                       !- Annual Average Outdoor Air Temperature {C}
   23.1524007936508;                       !- Maximum Difference In Monthly Average Outdoor Air Temperatures {deltaC}
 
 OS:RunPeriodControl:DaylightSavingTime,
-  {106ca951-ac5c-4538-a045-240505ab6f36}, !- Handle
+  {10bccd50-a923-4f09-8cbe-e8037039dc8d}, !- Handle
   3/12,                                   !- Start Date
   11/5;                                   !- End Date
 
 OS:Site:GroundTemperature:Deep,
-  {e70db7b9-49ac-419e-b38c-3e8accece1bc}, !- Handle
+  {a7611d4b-e9c7-4399-9fa1-0f1367196f21}, !- Handle
   10.8753424657535,                       !- January Deep Ground Temperature {C}
   10.8753424657535,                       !- February Deep Ground Temperature {C}
   10.8753424657535,                       !- March Deep Ground Temperature {C}

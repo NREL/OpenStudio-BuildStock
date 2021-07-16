@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../../test/minitest_helper'
 require 'openstudio'
 require 'openstudio/ruleset/ShowRunnerOutput'
@@ -443,6 +445,7 @@ class ResidentialClothesDryerTest < MiniTest::Test
               break
             end
             next if cd_time.nil?
+
             model.getScheduleRulesets.each do |cw_sch|
               next unless cw_sch.name.to_s.include? Constants.ObjectNameClothesWasher
 

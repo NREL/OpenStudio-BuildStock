@@ -1,4 +1,6 @@
-#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# !/usr/bin/env ruby
 
 require 'optparse'
 require 'net/http'
@@ -66,7 +68,7 @@ end
 def retrieve_dps(local_results_dir)
   dps = []
   Dir["#{local_results_dir}/*.csv"].each do |item|
-    rows = CSV.read(item, { encoding: 'ISO-8859-1' })
+    rows = CSV.read(item, encoding: 'ISO-8859-1')
     rows.each_with_index do |row, i|
       next if i == 0
       next unless row[4] == 'completed'
@@ -132,6 +134,7 @@ def retrieve_dp_data(local_results_dir, server_dns = nil, unzip = false)
 
     # Report out progress
     next unless i.to_f * 100 / dps.length >= report_at
+
     puts "INFO: Completed #{report_at}%; #{(Time.now - timestep).round}s"
     report_at += interval
     timestep = Time.now

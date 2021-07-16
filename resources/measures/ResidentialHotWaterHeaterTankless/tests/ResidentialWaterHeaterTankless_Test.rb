@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../../test/minitest_helper'
 require 'openstudio'
 require 'openstudio/ruleset/ShowRunnerOutput'
@@ -311,7 +313,7 @@ class ResidentialHotWaterHeaterTanklessTest < MiniTest::Test
     final_objects = get_objects(model)
 
     # get new and deleted objects
-    obj_type_exclusions = ['ConnectorMixer', 'ConnectorSplitter', 'Node', 'SetpointManagerScheduled', 'ScheduleDay', 'PipeAdiabatic', 'ScheduleTypeLimits', 'SizingPlant', 'AvailabilityManagerAssignmentList']
+    obj_type_exclusions = ['ConnectorMixer', 'ConnectorSplitter', 'Node', 'SetpointManagerScheduled', 'ScheduleDay', 'PipeAdiabatic', 'ScheduleTypeLimits', 'SizingPlant', 'AvailabilityManagerAssignmentList', 'CurveCubic', 'CurveExponent']
     all_new_objects = get_object_additions(initial_objects, final_objects, obj_type_exclusions)
     all_del_objects = get_object_additions(final_objects, initial_objects, obj_type_exclusions)
 
@@ -327,6 +329,7 @@ class ResidentialHotWaterHeaterTanklessTest < MiniTest::Test
 
         new_object = new_object.public_send("to_#{obj_type}").get
         next unless (obj_type == 'WaterHeaterMixed') || (obj_type == 'WaterHeaterStratified')
+
         actual_values['TankVolume'] += UnitConversions.convert(new_object.tankVolume.get, 'm^3', 'gal')
         actual_values['InputCapacity'] += UnitConversions.convert(new_object.heaterMaximumCapacity.get, 'W', 'kW')
         actual_values['ThermalEfficiency'] += new_object.heaterThermalEfficiency.get

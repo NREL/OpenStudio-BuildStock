@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'psychrometrics'
 require_relative 'constants'
 require_relative 'unit_conversions'
@@ -673,7 +675,7 @@ class WeatherProcess
 
     # Value not found, use average
     wsf_avg = wsfs.inject { |sum, n| sum + n } / wsfs.length
-    @runner.registerWarning("ASHRAE 62.2 WSF not found for station number #{@header.Station.to_s}, using the national average value of #{wsf_avg.round(3).to_s} instead.")
+    @runner.registerWarning("ASHRAE 62.2 WSF not found for station number #{@header.Station}, using the national average value of #{wsf_avg.round(3)} instead.")
     return wsf_avg
   end
 
@@ -721,6 +723,7 @@ class WeatherProcess
     cool_wetbulb = []
     for i in 0..(annual_hd_sorted_by_db.size - 1)
       next unless (annual_hd_sorted_by_db[i]['db'] > cool01per_db - 0.5) && (annual_hd_sorted_by_db[i]['db'] < cool01per_db + 0.5)
+
       cool_windspeed << annual_hd_sorted_by_db[i]['ws']
       wb = Psychrometrics.Twb_fT_R_P(UnitConversions.convert(annual_hd_sorted_by_db[i]['db'], 'C', 'F'), annual_hd_sorted_by_db[i]['rh'], std_press)
       cool_wetbulb << wb

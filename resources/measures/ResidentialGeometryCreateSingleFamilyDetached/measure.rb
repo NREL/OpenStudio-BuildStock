@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
@@ -707,6 +709,7 @@ class CreateResidentialSingleFamilyDetachedGeometry < OpenStudio::Measure::Model
       spaces = model.getSpaces
       spaces.each do |space|
         next unless Geometry.get_space_floor_z(space) + UnitConversions.convert(space.zOrigin, 'm', 'ft') < 0
+
         surfaces = space.surfaces
         surfaces.each do |surface|
           next if surface.surfaceType.downcase != 'wall'
@@ -741,10 +744,11 @@ class CreateResidentialSingleFamilyDetachedGeometry < OpenStudio::Measure::Model
       end
       space_with_roof_over_garage.surfaces.each do |surface|
         next unless (surface.surfaceType.downcase == 'roofceiling') && (surface.outsideBoundaryCondition.downcase == 'outdoors')
+
         n_points = []
         s_points = []
         surface.vertices.each do |vertex|
-          if vertex.y.abs < Constants.small
+          if vertex.y.abs < 0.0001
             n_points << vertex
           elsif vertex.y < 0
             s_points << vertex
@@ -880,6 +884,7 @@ class CreateResidentialSingleFamilyDetachedGeometry < OpenStudio::Measure::Model
 
         garage_attic_space.surfaces.each do |surface|
           next unless (num_floors > 1) || (attic_type == 'finished attic')
+
           m = Geometry.initialize_transformation_matrix(OpenStudio::Matrix.new(4, 4, 0))
           m[2, 3] = -attic_space.zOrigin
           transformation = OpenStudio::Transformation.new(m)

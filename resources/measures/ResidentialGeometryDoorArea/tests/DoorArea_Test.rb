@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../../../test/minitest_helper'
 require 'openstudio'
 require 'openstudio/ruleset/ShowRunnerOutput'
@@ -193,6 +195,7 @@ class DoorAreaTest < MiniTest::Test
     constructions = []
     model.getSubSurfaces.each do |sub_surface|
       next unless sub_surface.construction.is_initialized
+
       if not constructions.include? sub_surface.construction.get
         constructions << sub_surface.construction.get
         actual_values['Constructions'] += 1
